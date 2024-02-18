@@ -58,8 +58,15 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
-    //Viewmodel
+    //ViewModel
     val lifecycle_version = "2.7.0"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+
+    //Koin
+    val koin_version = "3.3.2"
+    implementation("io.insert-koin:koin-core:$koin_version")
+    implementation("io.insert-koin:koin-android:$koin_version")
+    //Koin test
+    androidTestImplementation("io.insert-koin:koin-test:$koin_version")
 }

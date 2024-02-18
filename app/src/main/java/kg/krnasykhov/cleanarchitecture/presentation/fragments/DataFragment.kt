@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import kg.krnasykhov.cleanarchitecture.databinding.FragmentDataBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 //Передавать лучше всегда applicationContext, чем context activity
 //lazy(LazyThreadSafetyMode.NONE) так как здесь многопоточность не требуется можно написать так
@@ -14,7 +14,7 @@ import kg.krnasykhov.cleanarchitecture.databinding.FragmentDataBinding
 class DataFragment : Fragment() {
 
     private lateinit var binding: FragmentDataBinding
-    private lateinit var dataViewModel: DataViewModel
+    private val dataViewModel by viewModel<DataViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +30,6 @@ class DataFragment : Fragment() {
     }
 
     private fun initListeners() {
-        dataViewModel = ViewModelProvider(
-            this,
-            DataViewModelFactory(requireActivity().applicationContext)
-        )[DataViewModel::class.java]
         dataViewModel.resultLive.observe(viewLifecycleOwner) { text ->
             binding.tvData.text = text
         }
